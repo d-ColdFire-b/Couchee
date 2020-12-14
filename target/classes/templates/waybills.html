@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Waybills</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-light navbar-expand-md navigation-clean" style="border-bottom-width: 1px;border-bottom-style: solid;">
+        <div class="container"><a class="navbar-brand" href="#">Couch and Stuff</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse"
+                id="navcol-1">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link active" href="/report">Reports</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/work">Work</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/clients">Clients</a></li>
+                    <form th:action="@{/logout}" method="post">
+                        <li class="nav-item" style="border-radius: 0px;"><a class="nav-link active" href="/logout" style="background: rgb(204,204,204);">Log out</a></li>
+                    </form>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="table-responsive" style="border-bottom-width: 1px;border-bottom-style: solid;">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th style="border-width: 1px;border-style: solid;border-bottom-color: rgb(0,0,0);">Waybills</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="border-top-style: solid;border-top-color: rgb(0,0,0);">Список</td>
+                </tr>
+                <tr></tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th style="border-right-width: 1px;border-right-style: solid;border-bottom: 1px solid rgb(0,0,0) ;">Add Waybill</th>
+                    <th style="border-width: 1px;border-style: solid;">Add Prop to cart</th>
+                    <th style="border-bottom: 1px solid rgb(0,0,0) ;">Cart</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="border-width: 1px;border-style: solid;border-right-style: none;width: 50%;">
+                        <div><input type="text" name="clientid" placeholder="ClientId" style="margin: 6px;"></div>
+                        <div><input type="text" name="StartPrice" placeholder="StartPrice" style="margin: 6px;"></div>
+                        <div><input type="text" name="Date" placeholder="Date" style="margin: 6px;"></div>
+                        <div><input type="text" placeholder="PriceW/Discount" name="discounted" style="margin: 6px;"></div><button class="btn btn-primary" type="submit" style="margin: 6px;">Add</button></td>
+                    <td style="border-width: 1px;border-style: solid;width: 20%;">
+                        <div><input type="text" placeholder="PropId" name="propid" style="margin: 6px;"></div>
+                        <div><button class="btn btn-primary" type="button" style="margin: 6px;">Add</button></div>
+                    </td>
+                    <td style="width: 30%;border-width: 1px;border-style: solid;">Содержание</td>
+                </tr>
+                <tr></tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Waybill details&nbsp;<input type="text" placeholder="WaybillId" name="waybill" style="margin: 6px;"><button class="btn btn-primary" type="button" style="margin: 6px;height: 30px;text-align: left;padding: 1px 2px;">Show</button></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="border-color: rgb(0,0,0);border-top-style: solid;border-right-style: solid;"><strong>Details</strong></td>
+                    <td style="width: 225px;"><strong>Cart</strong></td>
+                </tr>
+                <tr>
+                    <td style="border-right-style: solid;">List</td>
+                    <td>List</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script src="../static/js/jquery.min.js"></script>
+    <script src="../static/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>
