@@ -7,13 +7,13 @@ public class Report {
 
 
     private String propname;
-    private String propid;
+    private Integer propid;
     private Integer waybillid;
     private Date waybillfate;
 
     public Report(){}
 
-    public Report(String propname, String propid, Integer waybillid, Date waybillfate) {
+    public Report(String propname, Integer propid, Integer waybillid, Date waybillfate) {
         this.propname = propname;
         this.propid = propid;
         this.waybillid = waybillid;
@@ -28,11 +28,11 @@ public class Report {
         this.propname = propname;
     }
 
-    public String getPropid() {
+    public Integer getPropid() {
         return propid;
     }
 
-    public void setPropid(String propid) {
+    public void setPropid(Integer propid) {
         this.propid = propid;
     }
 
