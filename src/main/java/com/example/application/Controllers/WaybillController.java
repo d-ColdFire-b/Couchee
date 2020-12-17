@@ -13,4 +13,6 @@ public class WaybillController {
         return "waybills";
 
     }
+
+
 }

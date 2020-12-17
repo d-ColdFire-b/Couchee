@@ -60,7 +60,7 @@ public class JDBCprops {
         return list;
     }
 
-    public void createprop(Propform propform) throws SQLException{
+    public void newprop(Propform propform) throws SQLException{
         Connection connection = dataSource.getConnection();
         CallableStatement callableStatement = connection.prepareCall(ProcedurList.NEW_PROP);
         callableStatement.setString(1, propform.getName());

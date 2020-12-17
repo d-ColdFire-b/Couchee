@@ -12,14 +12,15 @@ public class ProcedurList {
     public static final String GET_PROPS_WITH_NAMES = "{call get_props_with_names()}";
 
     public static final String CLIENT_REPORT = "{call client_report (?)}";
-    public static final String PROPS_REPORT = "{call props_report (?)";
-    public static final String MASTER_REPORT = "(call get_master_report(?))";
-    public static final String CLIENT_PROP_REPORT = "(call client_bought_report(?))";
+    public static final String PROPS_REPORT = "{call props_report (?)}";
+    public static final String MASTER_REPORT = "{call get_master_report(?)}";
+    public static final String CLIENT_PROP_REPORT = "{call client_bought_report(?)}";
 
     public static final String GET_CART = "{call get_cart(?)}";
+    public static final String GET_FINAL_PRICE = "{? = call set_final_price (?)}";
 
     public static final String NEW_CLIENT = "{call new_client(?,?)}";
-    public static final String NEW_PROP = "{call new_master(?,?,?)}";
+    public static final String NEW_PROP = "{call new_prop(?,?,?)}";
     public static final String NEW_CART_POS = "{call new_cart_memb(?,?,?)}";
     public static final String NEW_MASTER = "{call new_master(?)}";
     public static final String NEW_TYPE = "{call new_type(?)}";

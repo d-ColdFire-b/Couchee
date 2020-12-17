@@ -30,6 +30,7 @@ public class JDBCWaybill {
                 waybill.setId(resultSet.getInt(1));
                 waybill.setClientid(resultSet.getInt(2));
                 waybill.setDate(resultSet.getDate(3));
+                waybill.setSum(resultSet.getInt(4));
                 list.add(waybill);
             }
 
@@ -49,6 +50,7 @@ public class JDBCWaybill {
                 waybill.setId(resultSet.getInt(1));
                 waybill.setClientname(resultSet.getString(2));
                 waybill.setDate(resultSet.getDate(3));
+                waybill.setSum(resultSet.getInt(4));
                 list.add(waybill);
             }
 
@@ -68,5 +70,14 @@ public class JDBCWaybill {
 
     }
 
+/*
+    public Integer getfinalsum(Integer waybillid) throws SQLException{
+        Connection connection = dataSource.getConnection();
+        CallableStatement callableStatement = connection.prepareCall(ProcedurList.GET_FINAL_PRICE);
+
+
+    }
+
+*/
 
 }

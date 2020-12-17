@@ -10,6 +10,7 @@ public class Waybill {
     private Integer clientid;
     private Date date;
     private String clientname;
+    private Integer sum;
 
 
     public Waybill (){}
@@ -19,6 +20,14 @@ public class Waybill {
         this.date = date;
         this.id = id;
 
+    }
+
+    public Integer getSum() {
+        return sum;
+    }
+
+    public void setSum(Integer sum) {
+        this.sum = sum;
     }
 
     public String getClientname() {

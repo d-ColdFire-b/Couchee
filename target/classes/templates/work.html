@@ -40,20 +40,25 @@
             </thead>
             <tbody>
                 <tr>
-                    <td style="border-width: 1px;border-style: none;width: 40%;">Список</td>
+                    <td style="border-width: 1px;border-style: none;width: 40%;" th:each="${masterlist}"><div>
+                        <span th:text="id"></span>
+                        <span th:text="name"></span>
+                    </div></td>
                     <td style="border-width: 1px;border-style: solid;width: 15%;">
-                        <form type="submit">
-                        <div><input type="text" placeholder="Name" name="name"></div>
-                        <div><input type="text" placeholder="MasterId" name="masterid"></div>
-                        <div><input type="text" placeholder="TypeId" name="typeid"></div>
-                        <div><button class="btn btn-primary" type="button">Add</button></div>
+                        <form th:action="@{/addprop}" th:object="${propform}" method="post">
+                        <div><input type="text" placeholder="Name" name="name" th:field="*{name}" ></div>
+                        <div><input type="text" placeholder="MasterId" name="masterid" th:field="*{masterid}" ></div>
+                        <div><input type="text" placeholder="TypeId" name="typeid" th:field="*{typeid}" ></div>
+                        <div><button class="btn btn-primary" type="submit">Add</button></div>
                         </form>
                     </td>
                     <td style="width: 30%;border-width: 1px;border-style: solid;">List</td>
                     <td style="width: 15%;border-width: 1px;border-style: solid;">
+                        <form th:action="@{/addtype}" th:object="${typeform}" method="post">
                         <div><input type="text" placeholder="Name" name="name">
-                            <div><button class="btn btn-primary" type="button">Add</button></div>
+                            <div><button class="btn btn-primary" type="submit">Add</button></div>
                         </div>
+                        </form>
                     </td>
                 </tr>
                 <tr></tr>
@@ -75,8 +80,8 @@
                 </td>
                 <td><form th:action="@{/addmaster}" th:object="${masterform}" method="post">
                     <div><input type="text" placeholder="Name" name="name" th:field="*{name}" style="margin: 6px;"></div>
-                    <div></div><button class="btn btn-primary" type="submit" style="padding: 5px;margin: 6px;">Add</button></td>
-                </form>
+                    <div></div><button class="btn btn-primary" type="submit" style="padding: 5px;margin: 6px;">Add</button> </form>
+                </td>
             </tr>
             <tr></tr>
             </tbody>
