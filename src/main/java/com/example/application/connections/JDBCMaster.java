@@ -1,6 +1,7 @@
 package com.example.application.connections;
 
 import com.example.application.entity.Master;
+import com.example.application.form.Masterform;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,10 +36,10 @@ public class JDBCMaster {
         return list;
     }
 
-    public void newmaster(String name) throws SQLException{
+    public void newmaster(Masterform masteform) throws SQLException{
         Connection connection = dataSource.getConnection();
         CallableStatement callableStatement = connection.prepareCall(ProcedurList.NEW_MASTER);
-        callableStatement.setString(1, name);
+        callableStatement.setString(1, masteform.getName());
         callableStatement.execute();
         connection.close();
 

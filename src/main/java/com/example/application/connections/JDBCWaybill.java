@@ -1,6 +1,7 @@
 package com.example.application.connections;
 
 import com.example.application.entity.Waybill;
+import com.example.application.form.Waybillform;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -57,11 +58,11 @@ public class JDBCWaybill {
         return list;
     }
 
-    public void newWaybill(String name, Date date) throws SQLException {
+    public void newWaybill(Waybillform waybillform) throws SQLException {
         Connection connection = dataSource.getConnection();
         CallableStatement callableStatement = connection.prepareCall(ProcedurList.NEW_WAYBILL);
-        callableStatement.setString(1,name);
-        callableStatement.setDate(2, (java.sql.Date) date);
+        callableStatement.setInt(1,waybillform.getClientid());
+        callableStatement.setDate(2, waybillform.getDate());
         callableStatement.execute();
         connection.close();
 

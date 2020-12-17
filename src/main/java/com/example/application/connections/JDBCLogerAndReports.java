@@ -1,6 +1,7 @@
 package com.example.application.connections;
 
 import com.example.application.entity.Report;
+import com.example.application.form.Logerform;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,10 +19,10 @@ public class JDBCLogerAndReports {
     @Autowired
     public DataSource dataSource;
 
-    public void newLogertext(String text) throws SQLException{
+    public void newLogertext(Logerform logerform) throws SQLException{
         Connection connection = dataSource.getConnection();
         CallableStatement callableStatement = connection.prepareCall(ProcedurList.NEW_LOGER_TEXT);
-        callableStatement.setString(1,text);
+        callableStatement.setString(1,logerform.getText());
         callableStatement.execute();
         connection.close();
 
@@ -66,6 +67,21 @@ public class JDBCLogerAndReports {
         Connection connection = dataSource.getConnection();
         CallableStatement callableStatement = connection.prepareCall(ProcedurList.PROPS_REPORT);
         callableStatement.setInt(1,typeid);
+        try(ResultSet resultSet = callableStatement.executeQuery()) {
+            while (resultSet.next()){
+                Report report = new Report();
+                report.setPropname(callableStatement.getString(1));
+                list.add(report);
+            }
+        } catch (Exception e){throw  e;}
+        return list;
+    }
+
+    public List<Report> clientpropreport(Integer clientid) throws SQLException{
+        List<Report> list = new ArrayList<>();
+        Connection connection = dataSource.getConnection();
+        CallableStatement callableStatement = connection.prepareCall(ProcedurList.CLIENT_PROP_REPORT);
+        callableStatement.setInt(1,clientid);
         try(ResultSet resultSet = callableStatement.executeQuery()) {
             while (resultSet.next()){
                 Report report = new Report();

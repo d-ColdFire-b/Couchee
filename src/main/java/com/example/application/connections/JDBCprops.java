@@ -1,6 +1,8 @@
 package com.example.application.connections;
 
 import com.example.application.entity.Prop;
+import com.example.application.form.Masterform;
+import com.example.application.form.Propform;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.object.StoredProcedure;
 import org.springframework.stereotype.Service;
@@ -58,12 +60,12 @@ public class JDBCprops {
         return list;
     }
 
-    public void createprop(String name,Integer masterid,Integer typeid) throws SQLException{
+    public void createprop(Propform propform) throws SQLException{
         Connection connection = dataSource.getConnection();
         CallableStatement callableStatement = connection.prepareCall(ProcedurList.NEW_PROP);
-        callableStatement.setString(1,name);
-        callableStatement.setInt(2,masterid);
-        callableStatement.setInt(3,typeid);
+        callableStatement.setString(1, propform.getName());
+        callableStatement.setInt(2,propform.getMasterid());
+        callableStatement.setInt(3,propform.getTypeid());
         callableStatement.execute();
         connection.close();
     }

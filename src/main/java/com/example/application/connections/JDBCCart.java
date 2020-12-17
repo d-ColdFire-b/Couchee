@@ -1,6 +1,7 @@
 package com.example.application.connections;
 
 import com.example.application.entity.Cart;
+import com.example.application.form.Cartform;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,12 +37,12 @@ public class JDBCCart {
 
     }
 
-    public void addCartmember(Integer waybillid, Integer propid, Integer price) throws SQLException{
+    public void addCartmember(Cartform cartform) throws SQLException{
         Connection connection = dataSource.getConnection();
         CallableStatement callableStatement = connection.prepareCall(ProcedurList.NEW_CART_POS);
-        callableStatement.setInt(1,waybillid);
-        callableStatement.setInt(2,propid);
-        callableStatement.setInt(3,price);
+        callableStatement.setInt(1,cartform.getWaybillid());
+        callableStatement.setInt(2,cartform.getPropid());
+        callableStatement.setInt(3,cartform.getPrice());
         callableStatement.execute();
         connection.close();
 

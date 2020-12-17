@@ -1,6 +1,7 @@
 package com.example.application.connections;
 
 import com.example.application.entity.Client;
+import com.example.application.form.Clientform;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,11 +36,11 @@ public class JDBCCLient {
         return list;
     }
 
-    public void newClient (String name, Integer discount) throws SQLException{
+    public void newClient (Clientform clientform) throws SQLException{
             Connection connection = dataSource.getConnection();
             CallableStatement callableStatement = connection.prepareCall(ProcedurList.NEW_CLIENT);
-            callableStatement.setString(1,name);
-            callableStatement.setInt(2,discount);
+            callableStatement.setString(1,clientform.getName());
+            callableStatement.setInt(2,clientform.getDiscount());
             callableStatement.execute();
             connection.close();
 

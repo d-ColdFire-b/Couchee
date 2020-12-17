@@ -17,9 +17,10 @@
             <div class="collapse navbar-collapse"
                 id="navcol-1">
                 <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item"><a class="nav-link" href="/report" style="color: rgb(0,0,0);">Reports</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/waybills" style="border-color: rgb(0,0,0);color: rgb(0,0,0);">Waybills</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/clients" style="color: rgb(0,0,0);">Clients</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/report" style="color: rgb(55,55,55);">Reports</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/clients" style="color: rgb(55,55,55);">Clients</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/work" style="color: rgb(0,0,0);">Work</a></li>
+                    <li class="nav-item"><a class="nav-link " href="/waybills" style="color: rgb(0,0,0);">Waybills</a></li>
                     <form th:action="@{/logout}" method="post">
                         <li class="nav-item" style="border-radius: 0px;"><a class="nav-link active" href="/logout" style="background: rgb(204,204,204);">Log out</a></li>
                     </form>
@@ -56,6 +57,28 @@
                     </td>
                 </tr>
                 <tr></tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="table-responsive" style="border:black solid; border-width: 1px">
+        <table class="table">
+            <thead>
+            <tr>
+                <th style="width: 50%;border-right-width: 1px;border-right-style: solid;">Мастера</th>
+                <th>Добавить Мастера</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="border-right-width: 1px;border-right-style: solid;">
+                    <div><span>Список</span></div>
+                </td>
+                <td><form th:action="@{/addmaster}" th:object="${masterform}" method="post">
+                    <div><input type="text" placeholder="Name" name="name" th:field="*{name}" style="margin: 6px;"></div>
+                    <div></div><button class="btn btn-primary" type="submit" style="padding: 5px;margin: 6px;">Add</button></td>
+                </form>
+            </tr>
+            <tr></tr>
             </tbody>
         </table>
     </div>

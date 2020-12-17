@@ -1,6 +1,7 @@
 package com.example.application.connections;
 
 import com.example.application.entity.Type;
+import com.example.application.form.Typeform;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,10 +37,10 @@ public class JDBCType {
         return  list;
     }
 
-    public void newtype(String name) throws SQLException{
+    public void newtype(Typeform typeform) throws SQLException{
         Connection connection = dataSource.getConnection();
         CallableStatement callableStatement = connection.prepareCall(ProcedurList.NEW_TYPE);
-        callableStatement.setString(1,name);
+        callableStatement.setString(1,typeform.getName());
         callableStatement.execute();
         connection.close();
 

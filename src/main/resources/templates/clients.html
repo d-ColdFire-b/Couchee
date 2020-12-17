@@ -18,8 +18,9 @@
                 id="navcol-1">
                 <ul class="nav navbar-nav ml-auto">
                     <li class="nav-item"><a class="nav-link" href="/report" style="color: rgb(55,55,55);">Reports</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="/work" style="color: rgb(0,0,0);">Work</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="/waybills" style="color: rgb(0,0,0);">Waybills</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/clients" style="color: rgb(55,55,55);">Clients</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/work" style="color: rgb(0,0,0);">Work</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/waybills" style="color: rgb(0,0,0);">Waybills</a></li>
                     <form th:action="@{/logout}" method="post">
                         <li class="nav-item" style="border-radius: 0px;"><a class="nav-link active" href="/logout" style="background: rgb(204,204,204);">Log out</a></li>
                     </form>
@@ -31,7 +32,7 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th style="width: 460px;border-right-width: 1px;border-right-style: solid;">Клиенты</th>
+                    <th style="width: 50%;border-right-width: 1px;border-right-style: solid;">Клиенты</th>
                     <th>Добавить Клиента</th>
                 </tr>
             </thead>

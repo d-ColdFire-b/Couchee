@@ -5,10 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Login - Brand</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
-    <link rel="stylesheet" href="assets/css/smoothproducts.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -16,17 +14,14 @@
 
 <body>
     <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
-        <div class="container"><a class="navbar-brand logo" href="#">Couch and stuff</a>
+        <div class="container"><a class="navbar-brand logo" href="/index">Couch and stuff</a>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="nav navbar-nav ml-auto"></ul>
             </div>
         </div>
     </nav>
-    <div th:if="${param.error}">
-        Invalid username and password.
-    </div>
-    <div th:if="${param.logout}">
-        You have been logged out.
+    <div th:if="${param.error}" style="text-align: center">
+        I think it's user password
     </div>
     <main class="page login-page">
         <section class="clean-block clean-form dark">
@@ -40,6 +35,8 @@
                     <button class="btn btn-primary btn-block" type="submit" value="Sign in">Log In</button></form>
             </div>
         </section>
+        <div th:if="${param.logout}" >
+        </div>
     </main>
 </body>
 

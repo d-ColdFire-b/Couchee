@@ -17,9 +17,10 @@
             <div class="collapse navbar-collapse"
                 id="navcol-1">
                 <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item"><a class="nav-link active" href="/report">Reports</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="/work">Work</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="/clients">Clients</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/report" style="color: rgb(55,55,55);">Reports</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/clients" style="color: rgb(55,55,55);">Clients</a></li>
+                    <li class="nav-item"><a class="nav-link " href="/work" style="color: rgb(0,0,0);">Work</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/waybills" style="color: rgb(0,0,0);">Waybills</a></li>
                     <form th:action="@{/logout}" method="post">
                         <li class="nav-item" style="border-radius: 0px;"><a class="nav-link active" href="/logout" style="background: rgb(204,204,204);">Log out</a></li>
                     </form>
@@ -78,7 +79,7 @@
             <tbody>
                 <tr>
                     <td style="border-color: rgb(0,0,0);border-top-style: solid;border-right-style: solid;"><strong>Details</strong></td>
-                    <td style="width: 225px;"><strong>Cart</strong></td>
+                    <td style="width: 505px;"><strong>Cart</strong></td>
                 </tr>
                 <tr>
                     <td style="border-right-style: solid;">List</td>

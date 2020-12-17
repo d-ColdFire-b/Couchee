@@ -1,10 +1,32 @@
 <!DOCTYPE HTML>
 <html xmlns:th="https://www.thymeleaf.org">
 <head>
-    <title>Getting Started: Serving Web Content</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Home page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-<p>Get your Work <a href="/work">here</a></p>
+<body>
+<nav class="navbar navbar-light navbar-expand-md navigation-clean" style="border-bottom-width: 1px;border-bottom-style: solid;">
+    <div class="container"><a class="navbar-brand" href="#">Couch and Stuff</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse"
+             id="navcol-1">
+            <ul class="nav navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="/report" style="color: rgb(55,55,55);">Reports</a></li>
+                <li class="nav-item"><a class="nav-link" href="/clients" style="color: rgb(55,55,55);">Clients</a></li>
+                <li class="nav-item"><a class="nav-link" href="/work" style="color: rgb(0,0,0);">Work</a></li>
+                <li class="nav-item"><a class="nav-link" href="/waybills" style="color: rgb(0,0,0);">Waybills</a></li>
+                <form th:action="@{/logout}" method="post">
+                    <li class="nav-item" style="border-radius: 0px;"><a class="nav-link active" href="/logout" style="background: rgb(204,204,204);">Log out</a></li>
+                </form>
+            </ul>
+        </div>
+    </div>
+</nav>
 </body>
 </html>
