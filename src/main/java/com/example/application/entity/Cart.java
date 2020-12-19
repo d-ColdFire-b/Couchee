@@ -10,16 +10,6 @@ public class Cart {
     private Integer price;
     private String propname;
 
-    public Cart(){}
-
-    public Cart(Integer waybillid,String propname, Integer propid, Integer rownumb, Integer price, Integer id) {
-        this.id = id;
-        this.waybillid = waybillid;
-        this.propid = propid;
-        this.rownumb = rownumb;
-        this.price = price;
-        this.propname = propname;
-    }
 
     public Integer getId() {
         return id;

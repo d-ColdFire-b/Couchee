@@ -77,7 +77,7 @@ public class WaybillController {
         model.addAttribute("idform", cartform);
 
         try {
-          //cartlist = cart.getCart(cartform);
+          cartlist = cart.getCart(cartform);
           waybilllis = waybill.getOnewaybill(cartform);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -86,6 +86,6 @@ public class WaybillController {
         model.addAttribute("list", cartlist);
         model.addAttribute("watibilinf", waybilllis);
 
-        return "redirect:/waybills";
+        return "waybills";
     }
 }

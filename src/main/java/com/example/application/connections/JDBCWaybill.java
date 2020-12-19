@@ -76,7 +76,6 @@ public class JDBCWaybill {
         List <Waybill> list = new ArrayList<>();
         Connection connection = dataSource.getConnection();
         CallableStatement callableStatement = connection.prepareCall(ProcedurList.GET_ONE_WAYBILL);
-        System.out.println(cartform.getId());
         callableStatement.setInt(1,cartform.getId());
         try(ResultSet resultSet = callableStatement.executeQuery()) {
             while (resultSet.next()){
