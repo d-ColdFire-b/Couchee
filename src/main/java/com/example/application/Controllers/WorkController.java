@@ -30,7 +30,11 @@ public class WorkController {
     JDBCType type;
 
     @GetMapping("/work")
-    public String work (Model model, Masterform masterform, Typeform typeform, Propform propform, List<Prop> propList, List<Master> masterList, List<Type> typeList){
+    public String work (Model model, Masterform masterform, Typeform typeform, Propform propform){
+/*
+        model.addAttribute("masterlist", masterList);
+        model.addAttribute("proplist", propList);
+        model.addAttribute("typelist", typeList);
         try {
             propList = prop.getProps();
             masterList = master.getMasters();
@@ -39,10 +43,9 @@ public class WorkController {
             throwables.printStackTrace();
         }
 
-        model.addAttribute("masterlist", masterList);
-        model.addAttribute("proplist", propList);
-        model.addAttribute("typelist", typeList);
 
+
+*/
 
         return "work";
     }

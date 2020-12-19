@@ -40,9 +40,9 @@
             </thead>
             <tbody>
                 <tr>
-                    <td style="border-width: 1px;border-style: none;width: 40%;" th:each="${masterlist}"><div>
-                        <span th:text="id"></span>
-                        <span th:text="name"></span>
+                    <td style="border-width: 1px;border-style: none;width: 40%;" ><div>
+                        <span>id</span>
+                        <span>name</span>
                     </div></td>
                     <td style="border-width: 1px;border-style: solid;width: 15%;">
                         <form th:action="@{/addprop}" th:object="${propform}" method="post">

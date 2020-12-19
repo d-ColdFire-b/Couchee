@@ -38,13 +38,13 @@
             </thead>
             <tbody>
                 <tr>
-                    <td style="border-right-width: 1px;border-right-style: solid;">
-                        <div><span>Список</span></div>
+                    <td style="border-right-width: 1px;border-right-style: solid;" th:each="clientform">
+                        <div><span th:text="${clientform.id}">id</span><span th:text="${clientform.name}">name</span><span th:text="${clientform.discount}">disc</span></div>
                     </td>
-                    <td>
-                        <div><input type="text" placeholder="Name" name="name" style="margin: 6px;"></div>
-                        <div><input type="text" name="discount" placeholder="Discount" style="margin: 6px;"></div>
-                        <div></div><button class="btn btn-primary" type="submit" style="padding: 5px;margin: 6px;">Add</button></td>
+                    <td><form th:action="@{/addclient}" th:object="${clientform}" method="post">
+                        <div><input type="text" placeholder="Name" name="name" th:field = "*{name}" style="margin: 6px;"></div>
+                        <div><input type="text" name="discount" placeholder="Discount"  th:field = "*{discount}" style="margin: 6px;"></div>
+                        <div></div><button class="btn btn-primary" type="submit" style="padding: 5px;margin: 6px;">Add</button></form></td>
                 </tr>
                 <tr></tr>
             </tbody>
