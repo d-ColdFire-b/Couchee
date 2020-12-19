@@ -17,7 +17,7 @@ public class ProcedurList {
     public static final String CLIENT_PROP_REPORT = "{call client_bought_report(?)}";
 
     public static final String GET_CART = "{call get_cart(?)}";
-    public static final String GET_FINAL_PRICE = "{? = call set_final_price (?)}";
+    public static final String GET_ONE_WAYBILL = "{call get_one_waybill(?)}";
 
     public static final String NEW_CLIENT = "{call new_client(?,?)}";
     public static final String NEW_PROP = "{call new_prop(?,?,?)}";

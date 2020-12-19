@@ -37,7 +37,13 @@
             </thead>
             <tbody>
                 <tr>
-                    <td style="border-top-style: solid;border-top-color: rgb(0,0,0);">Список</td>
+                    <td style="border-top-style: solid;border-top-color: rgb(0,0,0);"> <ul><li>
+                        <span>ID</span><span>  -  </span><span>Client Name</span><span>  -  </span><span>Purchase date</span><span>  -  </span><span>FinalPrice</span>
+                    </li>
+                        <li th:each="row, st :${waybilllist}">
+                            <span>id : </span><span th:text="${row.id}">id</span><span>  -  </span><span th:text="${row.clientname}">name</span><span>  -  </span><span th:text="${row.date}">disc</span><span>    -   </span><span th:text="${row.sum}">disc</span>
+                        </li>
+                    </ul></td>
                 </tr>
                 <tr></tr>
             </tbody>
@@ -49,31 +55,34 @@
                 <tr>
                     <th style="border-right-width: 1px;border-right-style: solid;border-bottom: 1px solid rgb(0,0,0) ;">Add Waybill</th>
                     <th style="border-width: 1px;border-style: solid;">Add Prop to cart</th>
-                    <th style="border-bottom: 1px solid rgb(0,0,0) ;">Cart</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td style="border-width: 1px;border-style: solid;border-right-style: none;width: 50%;">
-                        <div><input type="text" name="clientid" placeholder="ClientId" style="margin: 6px;"></div>
-                        <div><input type="text" name="StartPrice" placeholder="StartPrice" style="margin: 6px;"></div>
-                        <div><input type="text" name="Date" placeholder="Date" style="margin: 6px;"></div>
-                        <div><input type="text" placeholder="PriceW/Discount" name="discounted" style="margin: 6px;"></div><button class="btn btn-primary" type="submit" style="margin: 6px;">Add</button></td>
-                    <td style="border-width: 1px;border-style: solid;width: 20%;">
-                        <div><input type="text" placeholder="PropId" name="propid" style="margin: 6px;"></div>
-                        <div><button class="btn btn-primary" type="button" style="margin: 6px;">Add</button></div>
+                    <td style="border-width: 1px;border-style: solid;border-right-style: none;width: 50%;"><form th:action="@{/addwaybill}" th:object="${waybillform}" method="post">
+                        <div><input type="text" name="clientid" placeholder="ClientId" th:field="*{clientid}" style="margin: 6px;"></div>
+                        <div><input type="date" name="Date" placeholder="Date" th:field="*{date}" style="margin: 6px;"></div>
+                        <div><button class="btn btn-primary" type="submit" style="margin: 6px;">Add</button></div></form>
+                       <td style="border-width: 1px;border-style: solid;width: 20%;">
+                        <form th:action="@{/addcartmem}" th:object="${cartform}" method="post">
+                        <div><input type="text" placeholder="WaybillId" name="waibillid"  th:field="*{waybillid}" style="margin: 6px;"></div>
+                        <div><input type="text" placeholder="PropId" name="propid" th:field="*{propid}" style="margin: 6px;"></div>
+                        <div><input type="text" placeholder="Price" name="price" th:field="*{price}" style="margin: 6px;"></div>
+                        <div><button class="btn btn-primary" type="submit" style="margin: 6px;">Add</button></div></form>
                     </td>
-                    <td style="width: 30%;border-width: 1px;border-style: solid;">Содержание</td>
                 </tr>
                 <tr></tr>
             </tbody>
         </table>
     </div>
     <div class="table-responsive">
+        <form method="post" th:action="@{/getdetails}" th:object="${cartform}">
         <table class="table">
             <thead>
-                <tr>
-                    <th>Waybill details&nbsp;<input type="text" placeholder="WaybillId" name="waybill" style="margin: 6px;"><button class="btn btn-primary" type="button" style="margin: 6px;height: 30px;text-align: left;padding: 1px 2px;">Show</button></th>
+                <tr><
+                    <th>Waybill details&nbsp;<input type="text" placeholder="WaybillId" name="waybill" th:field = "*{id}" style="margin: 6px;">
+                        <button class="btn btn-primary" type="submit" style="margin: 6px;height: 30px;text-align: left;padding: 1px 2px;">Show</button></th>
+
                 </tr>
             </thead>
             <tbody>
@@ -82,11 +91,25 @@
                     <td style="width: 505px;"><strong>Cart</strong></td>
                 </tr>
                 <tr>
-                    <td style="border-right-style: solid;">List</td>
-                    <td>List</td>
+                    <td style="border-right-style: solid;"><ul><li>
+                    </li><ul>
+                        <li th:each="row, st :${watibilinf}">
+                            <div><span>ID of the List:</span><span th:text="${row.id}">id</span> </div>
+                            <div><span>Client name:</span><span th:text="${row.clientname}">clent</span> </div>
+                            <div><span>Date of contact:</span><span th:text="${row.date}">date</span> </div>
+                            <div><span>Final price:</span><span th:text="${row.sum}">sum</span> </div>
+                        </li></ul>
+                    </ul></td>
+                    <td><ul>
+                        <li> </li>
+                        <li th:each="row, st :${list}">
+                            <span th:text="${row.id}">id</span><span>  -  </span><span th:text="${row.propname}"></span>
+                        </li></ul>
+                    </td>
                 </tr>
             </tbody>
         </table>
+        </form>
     </div>
     <script src="../static/js/jquery.min.js"></script>
     <script src="../static/bootstrap/js/bootstrap.min.js"></script>

@@ -1,6 +1,7 @@
 package com.example.application.connections;
 
 import com.example.application.entity.Waybill;
+import com.example.application.form.Cartform;
 import com.example.application.form.Waybillform;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -70,14 +71,27 @@ public class JDBCWaybill {
 
     }
 
-/*
-    public Integer getfinalsum(Integer waybillid) throws SQLException{
+
+    public List<Waybill> getOnewaybill(Cartform cartform) throws  SQLException{
+        List <Waybill> list = new ArrayList<>();
         Connection connection = dataSource.getConnection();
-        CallableStatement callableStatement = connection.prepareCall(ProcedurList.GET_FINAL_PRICE);
+        CallableStatement callableStatement = connection.prepareCall(ProcedurList.GET_ONE_WAYBILL);
+        System.out.println(cartform.getId());
+        callableStatement.setInt(1,cartform.getId());
+        try(ResultSet resultSet = callableStatement.executeQuery()) {
+            while (resultSet.next()){
+                Waybill waybill = new Waybill();
+                waybill.setId(resultSet.getInt(1));
+                waybill.setClientname(resultSet.getString(2));
+                waybill.setDate(resultSet.getDate(3));
+                waybill.setSum(resultSet.getInt(4));
+                list.add(waybill);
+            }
 
-
+        }
+        catch (Exception e){throw  e;}
+        connection.close();
+        return list;
     }
-
-*/
 
 }

@@ -19,15 +19,17 @@ public class JDBCCart {
     @Autowired
     public DataSource dataSource;
 
-    public List<Cart> getCart(Integer waybillid) throws SQLException{
+    public List<Cart> getCart(Cartform cartform) throws SQLException{
         List<Cart> list = new ArrayList<>();
         Connection connection = dataSource.getConnection();
         CallableStatement callableStatement = connection.prepareCall(ProcedurList.GET_CART);
-        callableStatement.setInt(1,waybillid);
-        try(ResultSet resultSet = callableStatement.executeQuery()) {
+        callableStatement.setInt(1,cartform.getId());
+        callableStatement.execute();
+        try(ResultSet resultSet = callableStatement.getResultSet()) {
             while (resultSet.next()){
                 Cart cart = new Cart();
                 cart.setPropname(callableStatement.getString(1));
+                cart.setPrice(callableStatement.getInt(2));
                 list.add(cart);
             }
 

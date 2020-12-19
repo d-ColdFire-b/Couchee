@@ -5,6 +5,15 @@ public class Cartform {
     private Integer propid;
     private Integer waybillid;
     private Integer price;
+    private Integer id;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public Integer getPropid() {
         return propid;

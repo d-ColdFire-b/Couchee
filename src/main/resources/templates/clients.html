@@ -38,8 +38,15 @@
             </thead>
             <tbody>
                 <tr>
-                    <td style="border-right-width: 1px;border-right-style: solid;" th:each="clientform">
-                        <div><span th:text="${clientform.id}">id</span><span th:text="${clientform.name}">name</span><span th:text="${clientform.discount}">disc</span></div>
+                    <td style="border-right-width: 1px;border-right-style: solid;" >
+                        <ul><li>
+                            <span>ID</span><span>  -  </span><span>Name</span>
+                        </li>
+                            <li th:each="row, st :${list}">
+                                <span>id : </span><span th:text="${row.id}">id</span><span>  -  </span><span th:text="${row.name}">name</span><span>  -  </span><span th:text="${row.discount}">disc</span><span>%</span>
+                            </li>
+                        </ul>
+                        <div></div>
                     </td>
                     <td><form th:action="@{/addclient}" th:object="${clientform}" method="post">
                         <div><input type="text" placeholder="Name" name="name" th:field = "*{name}" style="margin: 6px;"></div>

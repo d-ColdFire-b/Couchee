@@ -41,8 +41,13 @@
             <tbody>
                 <tr>
                     <td style="border-width: 1px;border-style: none;width: 40%;" ><div>
-                        <span>id</span>
-                        <span>name</span>
+                        <ul><li>
+                            <span>ID</span><span>  -  </span><span>Name</span><span>  -  </span><span>Master</span><span>  -  </span><span>Type</span>
+                        </li>
+                            <li th:each="row, st :${proplist}">
+                                <span>id : </span><span th:text="${row.id}">id</span><span>  -  </span><span th:text="${row.name}">name</span><span>  -  </span><span th:text="${row.mastername}">disc</span><span>    -   </span><span th:text="${row.typename}">disc</span>
+                            </li>
+                        </ul>
                     </div></td>
                     <td style="border-width: 1px;border-style: solid;width: 15%;">
                         <form th:action="@{/addprop}" th:object="${propform}" method="post">
@@ -52,7 +57,17 @@
                         <div><button class="btn btn-primary" type="submit">Add</button></div>
                         </form>
                     </td>
-                    <td style="width: 30%;border-width: 1px;border-style: solid;">List</td>
+                    <td style="width: 30%;border-width: 1px;border-style: solid;">
+                       <div>
+                           <ul><li>
+                           <span>ID</span><span>  -  </span><span>Name</span>
+                       </li>
+                           <li th:each="row, st :${typelist}">
+                               <span>id : </span><span th:text="${row.id}">id</span><span>  -  </span><span th:text="${row.name}">name</span>
+                           </li>
+                       </ul>
+                       </div>
+                    </td>
                     <td style="width: 15%;border-width: 1px;border-style: solid;">
                         <form th:action="@{/addtype}" th:object="${typeform}" method="post">
                         <div><input type="text" placeholder="Name" name="name">
@@ -76,7 +91,13 @@
             <tbody>
             <tr>
                 <td style="border-right-width: 1px;border-right-style: solid;">
-                    <div><span>Список</span></div>
+                    <ul><li>
+                        <span>ID</span><span>  -  </span><span>Name</span><span>
+                    </li>
+                        <li th:each="row, st :${masterlist}">
+                            <span>id : </span><span th:text="${row.id}">id</span><span>  -  </span><span th:text="${row.name}">name</span>
+                        </li>
+                    </ul>
                 </td>
                 <td><form th:action="@{/addmaster}" th:object="${masterform}" method="post">
                     <div><input type="text" placeholder="Name" name="name" th:field="*{name}" style="margin: 6px;"></div>

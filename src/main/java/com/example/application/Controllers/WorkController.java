@@ -3,6 +3,7 @@ package com.example.application.Controllers;
 import com.example.application.connections.JDBCMaster;
 import com.example.application.connections.JDBCType;
 import com.example.application.connections.JDBCprops;
+import com.example.application.entity.Client;
 import com.example.application.entity.Master;
 import com.example.application.entity.Prop;
 import com.example.application.entity.Type;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -31,22 +33,19 @@ public class WorkController {
 
     @GetMapping("/work")
     public String work (Model model, Masterform masterform, Typeform typeform, Propform propform){
-/*
-        model.addAttribute("masterlist", masterList);
-        model.addAttribute("proplist", propList);
-        model.addAttribute("typelist", typeList);
+        List<Master> masterlist = new ArrayList<>();
+        List<Type> typelist = new ArrayList<>();
+        List<Prop> proplist = new ArrayList<>();
         try {
-            propList = prop.getProps();
-            masterList = master.getMasters();
-            typeList = type.getalltypes();
+            typelist = type.getalltypes();
+            masterlist = master.getMasters();
+            proplist = prop.getnamedProps();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
-
-
-*/
-
+        model.addAttribute("typelist",typelist);
+        model.addAttribute("masterlist", masterlist);
+        model.addAttribute("proplist", proplist);
         return "work";
     }
 
@@ -58,7 +57,7 @@ public class WorkController {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return "work";
+        return "redirect:/work";
     }
 
     @PostMapping("/addprop")
@@ -69,7 +68,7 @@ public class WorkController {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return "work";
+        return "redirect:/work";
     }
     @PostMapping("/addtype")
     public String addtype(Model model, @ModelAttribute("typeform") Typeform typeform){
@@ -79,6 +78,6 @@ public class WorkController {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return "work";
+        return "redirect:/work";
     }
 }

@@ -29,7 +29,7 @@ public class ClientConroller {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        model.addAttribute("clientform", list);
+        model.addAttribute("list", list);
 
         return "clients";
     }
@@ -44,7 +44,7 @@ public class ClientConroller {
             throwables.printStackTrace();
         }
 
-        return "clients";
+        return "redirect:/clients";
     }
 
 }

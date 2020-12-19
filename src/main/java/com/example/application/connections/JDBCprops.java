@@ -51,6 +51,7 @@ public class JDBCprops {
                     prop.setName(resultSet.getString(1));
                     prop.setMastername(resultSet.getString(2));
                     prop.setTypename(resultSet.getString(3));
+                    prop.setId(resultSet.getInt(4));
                     list.add(prop);
                 }
             } catch (Exception e){
