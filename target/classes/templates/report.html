@@ -61,7 +61,7 @@
                 <tr>
                     <td>
                         <ul><li>
-                        <span>ID</span><span>  -  </span><span>Name</span>
+                        <b><span>ID</span><span>  -  </span><span>Name</span></b>
                     </li>
                         <li th:each="row, st :${masterlist}">
                             <span>id : </span><span th:text="${row.id}">id</span><span>  -  </span><span th:text="${row.name}">name</span>
@@ -70,7 +70,7 @@
                     </td>
                     <td style="border-right-width: 1px;border-right-style: solid;border-left-width: 1px;border-left-style: solid;">
                         <ul><li>
-                        <span>Name</span>
+                        <b><span>Name</span></b>
                     </li>
                         <li th:each="row, st :${clientlist}">
                         <span th:text="${row.name}">name</span>
@@ -79,7 +79,7 @@
                     </td>
                     <td>
                         <ul><li>
-                        <span>Name</span>
+                       <b> <span>Name</span></b>
                     </li>
                         <li th:each="row, st :${proplist}">
                             <span th:text="${row.name}">name</span>

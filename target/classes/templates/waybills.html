@@ -38,7 +38,7 @@
             <tbody>
                 <tr>
                     <td style="border-top-style: solid;border-top-color: rgb(0,0,0);"> <ul><li>
-                        <span>ID</span><span>  -  </span><span>Client Name</span><span>  -  </span><span>Purchase date</span><span>  -  </span><span>FinalPrice</span>
+                     <b><span>ID</span><span>  -  </span><span>Client Name</span><span>  -  </span><span>Purchase date</span><span>  -  </span><span>FinalPrice</span></b>
                     </li>
                         <li th:each="row, st :${waybilllist}">
                             <span>id : </span><span th:text="${row.id}">id</span><span>  -  </span><span th:text="${row.clientname}">name</span><span>  -  </span><span th:text="${row.date}">disc</span><span>    -   </span><span th:text="${row.sum}">disc</span>
