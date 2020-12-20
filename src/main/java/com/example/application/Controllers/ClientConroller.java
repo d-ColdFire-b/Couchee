@@ -1,6 +1,7 @@
 package com.example.application.Controllers;
 
 import com.example.application.connections.JDBCCLient;
+import com.example.application.connections.JDBCLogerAndReports;
 import com.example.application.entity.Client;
 import com.example.application.form.Clientform;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,8 @@ public class ClientConroller {
 
     @Autowired
     JDBCCLient cLient;
+    @Autowired
+    JDBCLogerAndReports log;
 
     @GetMapping("/clients")
     public String clients(Model model, Clientform clientform){
@@ -40,6 +43,7 @@ public class ClientConroller {
 
         try {
             cLient.newClient(clientform);
+            log.newLogertext("New client have been added - " + clientform.getName() + "  At  " + log.GetDateTime());
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

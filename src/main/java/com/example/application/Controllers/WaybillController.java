@@ -1,6 +1,7 @@
 package com.example.application.Controllers;
 
 import com.example.application.connections.JDBCCart;
+import com.example.application.connections.JDBCLogerAndReports;
 import com.example.application.connections.JDBCWaybill;
 import com.example.application.entity.Cart;
 import com.example.application.entity.Waybill;
@@ -25,6 +26,8 @@ public class WaybillController {
     JDBCWaybill waybill;
     @Autowired
     JDBCCart cart;
+    @Autowired
+    JDBCLogerAndReports log;
 
     @GetMapping("/waybills")
     public String waybills(Model model, Waybillform waybillform, Cartform cartform){
@@ -47,6 +50,7 @@ public class WaybillController {
 
         try {
             waybill.newWaybill(waybillform);
+            log.newLogertext("Client with id:" + waybillform.getClientid() +"Get waybill on  " + log.GetDateTime());
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -62,6 +66,7 @@ public class WaybillController {
 
         try {
             cart.addCartmember(cartform);
+            log.newLogertext("New item have been added in cart of waybill - " + cartform.getWaybillid() + "Item ID:"+ cartform.getPropid() + "  At  " + log.GetDateTime());
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -79,6 +84,7 @@ public class WaybillController {
         try {
           cartlist = cart.getcart(cartform);
           waybilllis = waybill.getOnewaybill(cartform);
+            log.newLogertext("Details of the waybill : " + cartform.getId() + " Have been requested, at  " + log.GetDateTime());
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

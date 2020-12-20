@@ -14,7 +14,9 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -23,10 +25,19 @@ public class JDBCLogerAndReports {
     @Autowired
     public DataSource dataSource;
 
-    public void newLogertext(Logerform logerform) throws SQLException{
+
+
+    public String GetDateTime(){
+        Date date = new Date();
+        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+
+        return format.format(date);
+    }
+
+    public void newLogertext(String text) throws SQLException{
         Connection connection = dataSource.getConnection();
         CallableStatement callableStatement = connection.prepareCall(ProcedurList.NEW_LOGER_TEXT);
-        callableStatement.setString(1,logerform.getText());
+        callableStatement.setString(1,text);
         callableStatement.execute();
         connection.close();
 

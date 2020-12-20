@@ -1,5 +1,6 @@
 package com.example.application.Controllers;
 
+import com.example.application.connections.JDBCLogerAndReports;
 import com.example.application.connections.JDBCMaster;
 import com.example.application.connections.JDBCType;
 import com.example.application.connections.JDBCprops;
@@ -30,6 +31,8 @@ public class WorkController {
     JDBCprops prop;
     @Autowired
     JDBCType type;
+    @Autowired
+    JDBCLogerAndReports log;
 
     @GetMapping("/work")
     public String work (Model model, Masterform masterform, Typeform typeform, Propform propform){
@@ -54,9 +57,11 @@ public class WorkController {
         model.addAttribute("masterform", masterform);
         try {
             master.newmaster(masterform);
+            log.newLogertext("New master have been added - "+masterform.getName() +"  At  " + log.GetDateTime());
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+
         return "redirect:/work";
     }
 
@@ -65,6 +70,7 @@ public class WorkController {
     model.addAttribute("propform", propform);
         try {
             prop.newprop(propform);
+            log.newLogertext("New prop have been added - "+propform.getName() + "  At  " + log.GetDateTime());
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -75,6 +81,7 @@ public class WorkController {
         model.addAttribute("typeform",typeform);
         try {
             type.newtype(typeform);
+            log.newLogertext("New type have been added - "+typeform.getName() + "  At  " + log.GetDateTime());
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

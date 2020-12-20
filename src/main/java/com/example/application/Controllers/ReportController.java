@@ -43,7 +43,7 @@ public class ReportController {
             throwables.printStackTrace();
         }
         model.addAttribute("masterlist", masterlist);
-        return "report";
+        return "redirect:/report";
     }
     @PostMapping("/clienproptrep")
     public String clietnproprep(Model model, @ModelAttribute("clientrep") Clientform clientform){
