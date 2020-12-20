@@ -69,7 +69,7 @@ public class WaybillController {
         return "redirect:/waybills";
     }
 
-    @PostMapping("/getdetails")
+    @PostMapping("/getdetails")//Не работает итог, редиректит в 500 ошибку
     public String getdetails(Model model, @ModelAttribute("idform") Cartform cartform) {
         List<Cart> cartlist = new ArrayList<>();
         List<Waybill> waybilllis = new ArrayList<>();

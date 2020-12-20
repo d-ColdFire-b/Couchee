@@ -1,8 +1,12 @@
 package com.example.application.connections;
 
-import com.example.application.entity.Report;
+import com.example.application.entity.*;
+import com.example.application.form.Clientform;
 import com.example.application.form.Logerform;
+import com.example.application.form.Masterform;
+import com.example.application.form.Typeform;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
 import javax.sql.DataSource;
@@ -28,16 +32,16 @@ public class JDBCLogerAndReports {
 
     }
 
-    public List<Report> clientReport (Integer clientid) throws SQLException {
+    public List<Report> clientReport (Clientform clientform) throws SQLException {
         List<Report> list = new ArrayList<>();
         Connection connection = dataSource.getConnection();
         CallableStatement callableStatement = connection.prepareCall(ProcedurList.CLIENT_REPORT);
-        callableStatement.setInt(1,clientid);
+        callableStatement.setInt(1,clientform.getId());
         try (ResultSet resultSet = callableStatement.executeQuery()){
             while(resultSet.next()){
                 Report report = new Report();
-                report.setWaybillid(callableStatement.getInt(1));
-                report.setWaybillfate(callableStatement.getDate(2));
+                report.setWaybillid(resultSet.getInt(1));
+                report.setWaybillfate(resultSet.getDate(2));
 
             }
         } catch (Exception e){throw e;}
@@ -45,48 +49,48 @@ public class JDBCLogerAndReports {
         return list;
     }
 
-    public List<Report> masterreport(Integer masterid) throws SQLException{
-        List<Report> list = new ArrayList<>();
+    public List<Prop> masterreport(Masterform masterform) throws SQLException{
+        List<Prop> list = new ArrayList<>();
         Connection connection = dataSource.getConnection();
         CallableStatement callableStatement = connection.prepareCall(ProcedurList.MASTER_REPORT);
-        callableStatement.setInt(1,masterid);
+        callableStatement.setInt(1,masterform.getId());
         try(ResultSet resultSet = callableStatement.executeQuery()) {
             while (resultSet.next()){
-                Report report = new Report();
-                report.setPropid(callableStatement.getInt(1));
-                report.setPropname(callableStatement.getString(2));
-                list.add(report);
+                Prop prop = new Prop();
+                prop.setId(resultSet.getInt(1));
+                prop.setName(resultSet.getString(2));
+                list.add(prop);
             }
         }catch (Exception e) {throw e;}
         connection.close();
         return list;
     }
 
-    public List<Report> propsreport(Integer typeid) throws SQLException{
-        List<Report> list = new ArrayList<>();
+    public List<Prop> propsreport(Typeform typeform) throws SQLException{
+        List<Prop> list = new ArrayList<>();
         Connection connection = dataSource.getConnection();
         CallableStatement callableStatement = connection.prepareCall(ProcedurList.PROPS_REPORT);
-        callableStatement.setInt(1,typeid);
+        callableStatement.setInt(1,typeform.getId());
         try(ResultSet resultSet = callableStatement.executeQuery()) {
             while (resultSet.next()){
-                Report report = new Report();
-                report.setPropname(callableStatement.getString(1));
-                list.add(report);
+                Prop prop = new Prop();
+                prop.setName(resultSet.getString(1));
+                list.add(prop);
             }
         } catch (Exception e){throw  e;}
         return list;
     }
 
-    public List<Report> clientpropreport(Integer clientid) throws SQLException{
-        List<Report> list = new ArrayList<>();
+    public List<Prop> clientpropreport(Clientform clientform) throws SQLException{
+        List<Prop> list = new ArrayList<>();
         Connection connection = dataSource.getConnection();
         CallableStatement callableStatement = connection.prepareCall(ProcedurList.CLIENT_PROP_REPORT);
-        callableStatement.setInt(1,clientid);
+        callableStatement.setInt(1,clientform.getId());
         try(ResultSet resultSet = callableStatement.executeQuery()) {
             while (resultSet.next()){
-                Report report = new Report();
-                report.setPropname(callableStatement.getString(1));
-                list.add(report);
+                Prop prop = new Prop();
+                prop.setName(callableStatement.getString(1));
+                list.add(prop);
             }
         } catch (Exception e){throw  e;}
         return list;

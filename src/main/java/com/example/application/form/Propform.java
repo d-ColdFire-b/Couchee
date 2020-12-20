@@ -6,6 +6,7 @@ public class Propform {
     private Integer masterid;
     private Integer typeid;
 
+
     public String getName() {
         return name;
     }
