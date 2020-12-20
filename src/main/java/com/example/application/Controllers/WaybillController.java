@@ -46,11 +46,10 @@ public class WaybillController {
     @PostMapping("/addwaybill")
     public String addwaybill(Model model, @ModelAttribute("waybillform") Waybillform waybillform) {
 
-        model.addAttribute("waybillform", waybillform);
 
         try {
             waybill.newWaybill(waybillform);
-            log.newLogertext("Client with id:" + waybillform.getClientid() +"Get waybill on  " + log.GetDateTime());
+            log.newLogertext("Client with id:  " + waybillform.getClientid() +"  Get waybill at  " + log.GetDateTime());
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -62,11 +61,10 @@ public class WaybillController {
     @PostMapping("/addcartmem")
     public String addcartmem(Model model, @ModelAttribute("cartform") Cartform cartform){
 
-        model.addAttribute("cartform", cartform);
 
         try {
             cart.addCartmember(cartform);
-            log.newLogertext("New item have been added in cart of waybill - " + cartform.getWaybillid() + "Item ID:"+ cartform.getPropid() + "  At  " + log.GetDateTime());
+            log.newLogertext("New item have been added in cart of waybill - " + cartform.getWaybillid() + "  Item ID:"+ cartform.getPropid() + "  At  " + log.GetDateTime());
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -74,23 +72,34 @@ public class WaybillController {
         return "redirect:/waybills";
     }
 
-    @PostMapping("/getdetails")//Не работает итог, редиректит в 500 ошибку
-    public String getdetails(Model model, @ModelAttribute("idform") Cartform cartform) {
+    @PostMapping("/getdetails")
+    public String getdetails(Model model, @ModelAttribute("idform") Cartform cartform, Waybillform waybillform) {
+
         List<Cart> cartlist = new ArrayList<>();
         List<Waybill> waybilllis = new ArrayList<>();
 
-        model.addAttribute("idform", cartform);
+        model.addAttribute("cartform", cartform);
 
         try {
           cartlist = cart.getcart(cartform);
           waybilllis = waybill.getOnewaybill(cartform);
-            log.newLogertext("Details of the waybill : " + cartform.getId() + " Have been requested, at  " + log.GetDateTime());
+          log.newLogertext("Details of the waybill : " + cartform.getId() + " Have been requested, at  " + log.GetDateTime());
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
 
         model.addAttribute("list", cartlist);
         model.addAttribute("watibilinf", waybilllis);
+
+        List<Waybill> waybilllist = new ArrayList<>();
+
+        try {
+            waybilllist = waybill.getnamedWaybills();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        model.addAttribute("waybilllist", waybilllist);
+
 
         return "waybills";
     }

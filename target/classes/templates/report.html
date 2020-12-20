@@ -43,16 +43,20 @@
                     <td style="border-width: 1px;border-style: solid;">Выбор клиента</td>
                     <td style="border-width: 1px;border-style: solid;">Выбор типа товаров</td>
                 </tr>
-                <tr><form th:action="@{/masterrep}" th:object="${masterform}" method="post">
-                    <td style="border-width: 1px;border-style: solid;"><input type="text" name="MasterId" placeholder="MasterId" th:field="*{id}" style="margin: 6px;">
+                <tr>
+                        <form th:action="@{/masterrep}" th:object="${masterform}" method="post">
+                    <td style="border-width: 1px;border-style: solid;"><input type="number" name="MasterId" placeholder="MasterId" th:field="*{id}" style="margin: 6px;">
                         <div style="margin: 0px;"><button class="btn btn-primary" type="submit" style="margin: 6px;">Generate</button></div>
-                    </td></form><form th:action="@{/masterrep}" th:object="${clientform}" method="post">
-                    <td style="border-width: 1px;border-style: solid;"><input type="text" name="ClientId" placeholder="ClientId" th:field="*{id}" style="margin: 6PX;">
-                        <div><button class="btn btn-primary" type="submit" style="margin: 6PX;">Generate<br></button></div>
-                    </td></form><form th:action="@{/masterrep}" th:object="${typeform}" method="post">
-                    <td style="margin: 6px;border-width: 1px;border-style: solid;"><input type="text" name="Typeid" placeholder="TypeId" th:field="*{id}" style="margin: 6px;">
-                        <div><button class="btn btn-primary" type="submit">Generate<br></button></div>
                     </td></form>
+                        <form th:action="@{/clienproptrep}" th:object="${clientform}" method="post">
+                    <td style="border-width: 1px;border-style: solid;"><input type="number" name="ClientId" placeholder="ClientId" th:field="*{id}" style="margin: 6PX;">
+                        <div><button class="btn btn-primary" type="submit" style="margin: 6PX;">Generate<br></button></div>
+                    </td></form>
+                        <form th:action="@{/proptyperep}" th:object="${typeform}" method="post">
+                    <td style="margin: 6px;border-width: 1px;border-style: solid;"><input type="number" name="Typeid" placeholder="TypeId" th:field="*{id}" style="margin: 6px;">
+                        <div><button class="btn btn-primary" type="submit" style="margin: 6px;">Generate<br></button></div>
+                    </td>
+                    </form>
                 </tr>
                 <tr>
                     <td>

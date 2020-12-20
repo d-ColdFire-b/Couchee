@@ -42,7 +42,7 @@
                 <tr>
                     <td style="border-width: 1px;border-style: none;width: 40%;" ><div>
                         <ul><li>
-                            <span>ID</span><span>  -  </span><span>Name</span><span>  -  </span><span>Master</span><span>  -  </span><span>Type</span>
+                            <b><span>ID</span><span>  -  </span><span>Name</span><span>  -  </span><span>Master</span><span>  -  </span><span>Type</span></b>
                         </li>
                             <li th:each="row, st :${proplist}">
                                 <span>id : </span><span th:text="${row.id}">id</span><span>  -  </span><span th:text="${row.name}">name</span><span>  -  </span><span th:text="${row.mastername}">disc</span><span>    -   </span><span th:text="${row.typename}">disc</span>
@@ -51,16 +51,16 @@
                     </div></td>
                     <td style="border-width: 1px;border-style: solid;width: 15%;">
                         <form th:action="@{/addprop}" th:object="${propform}" method="post">
-                        <div><input type="text" placeholder="Name" name="name" th:field="*{name}" ></div>
-                        <div><input type="text" placeholder="MasterId" name="masterid" th:field="*{masterid}" ></div>
-                        <div><input type="text" placeholder="TypeId" name="typeid" th:field="*{typeid}" ></div>
-                        <div><button class="btn btn-primary" type="submit">Add</button></div>
+                        <div><input type="text" placeholder="Name" name="name" th:field="*{name}" th:default="NONPROP" style="margin: 6px;" ></div>
+                        <div><input type="number" placeholder="MasterId" name="masterid" th:field="*{masterid}" th:default="0" style="margin: 6px;" ></div>
+                        <div><input type="number" placeholder="TypeId" name="typeid" th:field="*{typeid}" th:default="0" style="margin: 6px;" ></div>
+                        <div><button class="btn btn-primary" type="submit" style="margin: 6px;">Add</button></div>
                         </form>
                     </td>
                     <td style="width: 30%;border-width: 1px;border-style: solid;">
                        <div>
                            <ul><li>
-                           <span>ID</span><span>  -  </span><span>Name</span>
+                          <b> <span>ID</span><span>  -  </span><span>Name</span></b>
                        </li>
                            <li th:each="row, st :${typelist}">
                                <span>id : </span><span th:text="${row.id}">id</span><span>  -  </span><span th:text="${row.name}">name</span>
@@ -70,8 +70,8 @@
                     </td>
                     <td style="width: 15%;border-width: 1px;border-style: solid;">
                         <form th:action="@{/addtype}" th:object="${typeform}" method="post">
-                        <div><input type="text" placeholder="Name" name="name">
-                            <div><button class="btn btn-primary" type="submit">Add</button></div>
+                        <div><input type="text" placeholder="Name" name="name" style="margin: 6px;">
+                            <div><button class="btn btn-primary" type="submit" style="margin: 6px;">Add</button></div>
                         </div>
                         </form>
                     </td>
@@ -92,7 +92,7 @@
             <tr>
                 <td style="border-right-width: 1px;border-right-style: solid;">
                     <ul><li>
-                        <span>ID</span><span>  -  </span><span>Name</span><span>
+                     <b>  <span>ID</span><span>  -  </span><span>Name</span></b>
                     </li>
                         <li th:each="row, st :${masterlist}">
                             <span>id : </span><span th:text="${row.id}">id</span><span>  -  </span><span th:text="${row.name}">name</span>

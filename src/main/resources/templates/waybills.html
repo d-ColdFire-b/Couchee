@@ -38,7 +38,7 @@
             <tbody>
                 <tr>
                     <td style="border-top-style: solid;border-top-color: rgb(0,0,0);"> <ul><li>
-                        <span>ID</span><span>  -  </span><span>Client Name</span><span>  -  </span><span>Purchase date</span><span>  -  </span><span>FinalPrice</span>
+                     <b><span>ID</span><span>  -  </span><span>Client Name</span><span>  -  </span><span>Purchase date</span><span>  -  </span><span>FinalPrice</span></b>
                     </li>
                         <li th:each="row, st :${waybilllist}">
                             <span>id : </span><span th:text="${row.id}">id</span><span>  -  </span><span th:text="${row.clientname}">name</span><span>  -  </span><span th:text="${row.date}">disc</span><span>    -   </span><span th:text="${row.sum}">disc</span>
@@ -60,14 +60,14 @@
             <tbody>
                 <tr>
                     <td style="border-width: 1px;border-style: solid;border-right-style: none;width: 50%;"><form th:action="@{/addwaybill}" th:object="${waybillform}" method="post">
-                        <div><input type="text" name="clientid" placeholder="ClientId" th:field="*{clientid}" style="margin: 6px;"></div>
+                        <div><input type="number" name="clientid" placeholder="ClientId" th:field="*{clientid}" style="margin: 6px;"></div>
                         <div><input type="date" name="Date" placeholder="Date" th:field="*{date}" style="margin: 6px;"></div>
                         <div><button class="btn btn-primary" type="submit" style="margin: 6px;">Add</button></div></form>
                        <td style="border-width: 1px;border-style: solid;width: 20%;">
                         <form th:action="@{/addcartmem}" th:object="${cartform}" method="post">
-                        <div><input type="text" placeholder="WaybillId" name="waibillid"  th:field="*{waybillid}" style="margin: 6px;"></div>
-                        <div><input type="text" placeholder="PropId" name="propid" th:field="*{propid}" style="margin: 6px;"></div>
-                        <div><input type="text" placeholder="Price" name="price" th:field="*{price}" style="margin: 6px;"></div>
+                        <div><input type="number" placeholder="WaybillId" name="waibillid"  th:field="*{waybillid}" style="margin: 6px;"></div>
+                        <div><input type="number" placeholder="PropId" name="propid" th:field="*{propid}" style="margin: 6px;"></div>
+                        <div><input type="number" placeholder="Price" name="price" th:field="*{price}" style="margin: 6px;"></div>
                         <div><button class="btn btn-primary" type="submit" style="margin: 6px;">Add</button></div></form>
                     </td>
                 </tr>
@@ -79,8 +79,8 @@
         <form method="post" th:action="@{/getdetails}" th:object="${cartform}">
         <table class="table">
             <thead>
-                <tr><
-                    <th>Waybill details&nbsp;<input type="text" placeholder="WaybillId" name="waybill" th:field = "*{id}" style="margin: 6px;">
+                <tr>
+                    <th>Waybill details&nbsp;<input type="number" placeholder="WaybillId" name="waybill" th:field = "*{id}" style="margin: 6px;">
                         <button class="btn btn-primary" type="submit" style="margin: 6px;height: 30px;text-align: left;padding: 1px 2px;">Show</button></th>
 
                 </tr>
@@ -92,18 +92,18 @@
                 </tr>
                 <tr>
                     <td style="border-right-style: solid;"><ul><li>
-                    </li><ul>
-                        <li th:each="row, st :${watibilinf}">
-                            <div><span>ID of the List:</span><span th:text="${row.id}">id</span> </div>
-                            <div><span>Client name:</span><span th:text="${row.clientname}">clent</span> </div>
-                            <div><span>Date of contact:</span><span th:text="${row.date}">date</span> </div>
-                            <div><span>Final price:</span><span th:text="${row.sum}">sum</span> </div>
-                        </li></ul>
+                    </li><ul th:each="row, st :${watibilinf}">
+
+                        <div><span><b>ID of the List:</b> </span><span th:text="${row.id}">id</span> </div>
+                            <div><span><b>Client name:</b>  </span><span th:text="${row.clientname}">clent</span> </div>
+                            <div><span><b>Date of contact: </b> </span><span th:text="${row.date}">date</span> </div>
+                            <div><span><b>Final price: </b> </span><span th:text="${row.sum}">sum</span> </div>
+                 </ul>
                     </ul></td>
                     <td><ul>
-                        <li> </li>
+                        <li><span><b>Name</b> </span><span>  -  </span><span><b>Start Price</b></span></li>
                         <li th:each="row, st :${list}">
-                            <span th:text="${row.id}">id</span><span>  -  </span><span th:text="${row.propname}"></span>
+                            <span th:text="${row.propname}"></span><span>  -  </span><span th:text="${row.getPrice()}"></span>
                         </li></ul>
                     </td>
                 </tr>

@@ -40,7 +40,7 @@
                 <tr>
                     <td style="border-right-width: 1px;border-right-style: solid;" >
                         <ul><li>
-                            <span>ID</span><span>  -  </span><span>Name</span>
+                            <b><span>ID</span><span>  -  </span><span>Name</span>  -  </span><span>Discount</span></b>
                         </li>
                             <li th:each="row, st :${list}">
                                 <span>id : </span><span th:text="${row.id}">id</span><span>  -  </span><span th:text="${row.name}">name</span><span>  -  </span><span th:text="${row.discount}">disc</span><span>%</span>
@@ -50,7 +50,7 @@
                     </td>
                     <td><form th:action="@{/addclient}" th:object="${clientform}" method="post">
                         <div><input type="text" placeholder="Name" name="name" th:field = "*{name}" style="margin: 6px;"></div>
-                        <div><input type="text" name="discount" placeholder="Discount"  th:field = "*{discount}" style="margin: 6px;"></div>
+                        <div><input type="number" name="discount" placeholder="Discount"  th:field = "*{discount}" style="margin: 6px;"></div>
                         <div></div><button class="btn btn-primary" type="submit" style="padding: 5px;margin: 6px;">Add</button></form></td>
                 </tr>
                 <tr></tr>

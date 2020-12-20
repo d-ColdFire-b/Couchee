@@ -6,7 +6,6 @@ import com.example.application.form.Logerform;
 import com.example.application.form.Masterform;
 import com.example.application.form.Typeform;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
 import javax.sql.DataSource;
@@ -100,7 +99,7 @@ public class JDBCLogerAndReports {
         try(ResultSet resultSet = callableStatement.executeQuery()) {
             while (resultSet.next()){
                 Prop prop = new Prop();
-                prop.setName(callableStatement.getString(1));
+                prop.setName(resultSet.getString(1));
                 list.add(prop);
             }
         } catch (Exception e){throw  e;}

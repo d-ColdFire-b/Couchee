@@ -51,10 +51,10 @@
                     </div></td>
                     <td style="border-width: 1px;border-style: solid;width: 15%;">
                         <form th:action="@{/addprop}" th:object="${propform}" method="post">
-                        <div><input type="text" placeholder="Name" name="name" th:field="*{name}" ></div>
-                        <div><input type="text" placeholder="MasterId" name="masterid" th:field="*{masterid}" ></div>
-                        <div><input type="text" placeholder="TypeId" name="typeid" th:field="*{typeid}" ></div>
-                        <div><button class="btn btn-primary" type="submit">Add</button></div>
+                        <div><input type="text" placeholder="Name" name="name" th:field="*{name}" th:default="NONPROP" style="margin: 6px;" ></div>
+                        <div><input type="number" placeholder="MasterId" name="masterid" th:field="*{masterid}" th:default="0" style="margin: 6px;" ></div>
+                        <div><input type="number" placeholder="TypeId" name="typeid" th:field="*{typeid}" th:default="0" style="margin: 6px;" ></div>
+                        <div><button class="btn btn-primary" type="submit" style="margin: 6px;">Add</button></div>
                         </form>
                     </td>
                     <td style="width: 30%;border-width: 1px;border-style: solid;">
@@ -70,8 +70,8 @@
                     </td>
                     <td style="width: 15%;border-width: 1px;border-style: solid;">
                         <form th:action="@{/addtype}" th:object="${typeform}" method="post">
-                        <div><input type="text" placeholder="Name" name="name">
-                            <div><button class="btn btn-primary" type="submit">Add</button></div>
+                        <div><input type="text" placeholder="Name" name="name" style="margin: 6px;">
+                            <div><button class="btn btn-primary" type="submit" style="margin: 6px;">Add</button></div>
                         </div>
                         </form>
                     </td>

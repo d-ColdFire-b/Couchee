@@ -33,43 +33,48 @@ public class ReportController {
     }
 
     @PostMapping("/masterrep")
-    public String masterrep(Model model, @ModelAttribute("masterrep") Masterform masterform){
+    public String masterrep(Model model, @ModelAttribute("masterrep") Masterform masterform, Clientform clientform, Typeform typeform){
         model.addAttribute("masterform",masterform);
         List<Prop> masterlist = new ArrayList<>();
 
         try {
            masterlist = reports.masterreport(masterform);
+           reports.newLogertext("Requested info about products maded by master with id: " + masterform.getId() + "   At  " + reports.GetDateTime());
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
         model.addAttribute("masterlist", masterlist);
-        return "redirect:/report";
+        return "report";
     }
+
     @PostMapping("/clienproptrep")
-    public String clietnproprep(Model model, @ModelAttribute("clientrep") Clientform clientform){
+    public String clietnproprep(Model model, @ModelAttribute("clientrep") Clientform clientform, Masterform masterform,Typeform typeform){
         model.addAttribute("clientform",clientform);
         List<Prop> clientlist = new ArrayList<>();
 
         try {
           clientlist = reports.clientpropreport(clientform);
+            reports.newLogertext("Requested info about purchases by client with id: " + clientform.getId() + "   At  " + reports.GetDateTime());
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
         model.addAttribute("clientlist", clientlist);
-        return "redirect:/report";
+        return "report";
     }
+
     @PostMapping("/proptyperep")
-    public String proptyperep(Model model, @ModelAttribute("masterrep") Typeform typeform){
+    public String proptyperep(Model model, @ModelAttribute("masterrep") Typeform typeform, Clientform clientform, Masterform masterform){
         model.addAttribute("typeform",typeform);
         List<Prop> propList = new ArrayList<>();
 
         try {
             propList = reports.propsreport(typeform);
+            reports.newLogertext("Requested info about all props of type with id: " + typeform.getId() + "   At " + reports.GetDateTime());
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
         model.addAttribute("proplist", propList);
-        return "redirect:/report";
+        return "report";
     }
 
 }
