@@ -2,6 +2,7 @@ package com.example.application.connections;
 
 import com.example.application.entity.Client;
 import com.example.application.form.Clientform;
+import com.example.application.form.Priceform;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,6 +44,16 @@ public class JDBCCLient {
             callableStatement.setInt(2,clientform.getDiscount());
             callableStatement.execute();
             connection.close();
+
+    }
+
+    public void UpdDisc(Priceform priceform) throws SQLException{
+        Connection connection = dataSource.getConnection();
+        CallableStatement callableStatement = connection.prepareCall(ProcedurList.UPDATE_CLIENT_DISCOUNT);
+        callableStatement.setInt(1,priceform.getPropid());
+        callableStatement.setInt(2,priceform.getPrice());
+        callableStatement.execute();
+        connection.close();
 
     }
 }

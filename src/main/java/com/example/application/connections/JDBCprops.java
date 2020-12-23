@@ -2,7 +2,9 @@ package com.example.application.connections;
 
 import com.example.application.entity.Prop;
 import com.example.application.form.Masterform;
+import com.example.application.form.Priceform;
 import com.example.application.form.Propform;
+import com.example.application.form.QuantityForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.object.StoredProcedure;
 import org.springframework.stereotype.Service;
@@ -49,9 +51,10 @@ public class JDBCprops {
                 while (resultSet.next()){
                     Prop prop = new Prop();
                     prop.setName(resultSet.getString(1));
-                    prop.setMastername(resultSet.getString(2));
-                    prop.setTypename(resultSet.getString(3));
-                    prop.setId(resultSet.getInt(4));
+                    prop.setTypename(resultSet.getString(2));
+                    prop.setId(resultSet.getInt(3));
+                    prop.setNumberof(resultSet.getInt(4));
+                    prop.setPrice(resultSet.getInt(5));
                     list.add(prop);
                 }
             } catch (Exception e){
@@ -67,7 +70,41 @@ public class JDBCprops {
         callableStatement.setString(1, propform.getName());
         callableStatement.setInt(2,propform.getMasterid());
         callableStatement.setInt(3,propform.getTypeid());
+        callableStatement.setInt(4,propform.getPrice());
         callableStatement.execute();
         connection.close();
     }
+
+    public void  addpropnumber(QuantityForm quantityForm) throws SQLException{
+        Connection connection = dataSource.getConnection();
+        CallableStatement callableStatement = connection.prepareCall(ProcedurList.ADD_NUMBER_OF_PROPS);
+        callableStatement.setInt(1,quantityForm.getNumberof());
+        callableStatement.setInt(2,quantityForm.getPropid());
+        callableStatement.execute();
+        connection.close();
+
+    }
+
+    public void addnewhistorycraft(QuantityForm quantityForm) throws SQLException{
+        Connection connection = dataSource.getConnection();
+        CallableStatement callableStatement = connection.prepareCall(ProcedurList.ADD_NEW_CRAFT_ROW);
+        callableStatement.setInt(1,quantityForm.getMasterid());
+        callableStatement.setInt(2,quantityForm.getPropid());
+        callableStatement.setInt(3,quantityForm.getNumberof());
+        callableStatement.execute();
+        connection.close();
+
+    }
+
+    public void updatepropprice(Priceform priceform) throws  SQLException{
+        Connection connection = dataSource.getConnection();
+        CallableStatement callableStatement = connection.prepareCall(ProcedurList.UPDATE_PROP_PRICE);
+        callableStatement.setInt(1, priceform.getPrice());
+        callableStatement.setInt(2,priceform.getPropid());
+        callableStatement.execute();
+        connection.close();
+
+    }
+
+
 }

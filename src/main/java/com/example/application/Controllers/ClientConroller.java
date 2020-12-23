@@ -4,6 +4,7 @@ import com.example.application.connections.JDBCCLient;
 import com.example.application.connections.JDBCLogerAndReports;
 import com.example.application.entity.Client;
 import com.example.application.form.Clientform;
+import com.example.application.form.Priceform;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,7 +26,7 @@ public class ClientConroller {
     JDBCLogerAndReports log;
 
     @GetMapping("/clients")
-    public String clients(Model model, Clientform clientform){
+    public String clients(Model model, Clientform clientform, Priceform priceform){
         List<Client> list = new ArrayList<>();
         try {
             list = cLient.getClients();
@@ -44,6 +45,19 @@ public class ClientConroller {
         try {
             cLient.newClient(clientform);
             log.newLogertext("New client have been added - " + clientform.getName() + "  At  " + log.GetDateTime());
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return "redirect:/clients";
+    }
+
+    @PostMapping("/changedisc")
+    public String changedisc (Model model, @ModelAttribute("priceform")Priceform priceform){
+
+        try {
+            cLient.UpdDisc(priceform);
+            log.newLogertext("Discount of client id: "+ priceform.getPropid() + "changed to "+ priceform.getPrice() +" at" + log.GetDateTime());
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

@@ -6,6 +6,15 @@ public class Cartform {
     private Integer waybillid;
     private Integer price;
     private Integer id;
+    private Integer numberof;
+
+    public Integer getNumberof() {
+        return numberof;
+    }
+
+    public void setNumberof(Integer numberof) {
+        this.numberof = numberof;
+    }
 
     public Integer getId() {
         return id;

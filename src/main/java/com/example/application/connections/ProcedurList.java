@@ -19,6 +19,10 @@ public class ProcedurList {
     public static final String GET_CART = "{call get_cart(?)}";
     public static final String GET_ONE_WAYBILL = "{call get_one_waybill(?)}";
 
+    public static final String UPDATE_PROP_PRICE="{call updateprice(?,?)}";
+    public static final String UPDATE_ORDER_STATUS = "{call close_order(?)}";
+    public static final String UPDATE_CLIENT_DISCOUNT = "{call updateclientdisc(?)}";
+
     public static final String NEW_CLIENT = "{call new_client(?,?)}";
     public static final String NEW_PROP = "{call new_prop(?,?,?)}";
     public static final String NEW_CART_POS = "{call new_cart_memb(?,?,?)}";
@@ -26,6 +30,9 @@ public class ProcedurList {
     public static final String NEW_TYPE = "{call new_type(?)}";
     public static final String NEW_WAYBILL = "{call new_waybill(?,?)}";
     public static final String NEW_LOGER_TEXT = "{call new_loger_row(?)}";
+    public static final String ADD_NUMBER_OF_PROPS = "{call update_numberof(?,?)}";
+    public static final String REMOVE_NUMBER_OF_PROPS = "{call update_numberof_remove(?,?)}";
+    public static final String ADD_NEW_CRAFT_ROW = "{call newcraftstory(?,?,?)}";
 
 
 }

@@ -69,6 +69,7 @@ public class JDBCLogerAndReports {
                 Prop prop = new Prop();
                 prop.setId(resultSet.getInt(1));
                 prop.setName(resultSet.getString(2));
+                prop.setNumberof(resultSet.getInt(3));
                 list.add(prop);
             }
         }catch (Exception e) {throw e;}
@@ -85,6 +86,7 @@ public class JDBCLogerAndReports {
             while (resultSet.next()){
                 Prop prop = new Prop();
                 prop.setName(resultSet.getString(1));
+                prop.setNumberof(resultSet.getInt(2));
                 list.add(prop);
             }
         } catch (Exception e){throw  e;}
@@ -100,6 +102,7 @@ public class JDBCLogerAndReports {
             while (resultSet.next()){
                 Prop prop = new Prop();
                 prop.setName(resultSet.getString(1));
+                prop.setNumberof(resultSet.getInt(2));
                 list.add(prop);
             }
         } catch (Exception e){throw  e;}

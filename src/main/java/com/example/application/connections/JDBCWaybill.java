@@ -2,6 +2,7 @@ package com.example.application.connections;
 
 import com.example.application.entity.Waybill;
 import com.example.application.form.Cartform;
+import com.example.application.form.Typeform;
 import com.example.application.form.Waybillform;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -84,6 +85,7 @@ public class JDBCWaybill {
                 waybill.setClientname(resultSet.getString(2));
                 waybill.setDate(resultSet.getDate(3));
                 waybill.setSum(resultSet.getInt(4));
+                waybill.setStatus(resultSet.getString(5));
                 list.add(waybill);
             }
 
@@ -91,6 +93,15 @@ public class JDBCWaybill {
         catch (Exception e){throw  e;}
         connection.close();
         return list;
+    }
+
+    public void closeorder(Typeform typeform) throws SQLException{
+        Connection connection = dataSource.getConnection();
+        CallableStatement callableStatement = connection.prepareCall(ProcedurList.UPDATE_ORDER_STATUS);
+        callableStatement.setInt(1, typeform.getId());
+        callableStatement.execute();
+        connection.close();
+
     }
 
 }

@@ -9,7 +9,15 @@ public class Cart {
     private Integer rownumb;
     private Integer price;
     private String propname;
+    private Integer numberof;
 
+    public Integer getNumberof() {
+        return numberof;
+    }
+
+    public void setNumberof(Integer numberof) {
+        this.numberof = numberof;
+    }
 
     public Integer getId() {
         return id;

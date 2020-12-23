@@ -42,19 +42,33 @@
                 <tr>
                     <td style="border-width: 1px;border-style: none;width: 40%;" ><div>
                         <ul><li>
-                            <b><span>ID</span><span>  -  </span><span>Name</span><span>  -  </span><span>Master</span><span>  -  </span><span>Type</span></b>
+                            <b><span>ID</span><span>  -  </span><span>Name</span><span>  -  </span><span>Type</span><span>  -  </span><span>Quantity</span><span>  -  </span><span>Price</span></b>
                         </li>
                             <li th:each="row, st :${proplist}">
-                                <span>id : </span><span th:text="${row.id}">id</span><span>  -  </span><span th:text="${row.name}">name</span><span>  -  </span><span th:text="${row.mastername}">disc</span><span>    -   </span><span th:text="${row.typename}">disc</span>
+                                <span>id : </span><span th:text="${row.id}">id</span><span>  -  </span><span th:text="${row.name}">name</span><span>  -  </span><span th:text="${row.typename}">disc</span><span>    -   </span><span th:text="${row.numberof}">disc</span><span>  units  </span><span>    -   </span><span th:text="${row.price}"></span><span> rubles</span>
                             </li>
                         </ul>
                     </div></td>
                     <td style="border-width: 1px;border-style: solid;width: 15%;">
                         <form th:action="@{/addprop}" th:object="${propform}" method="post">
-                        <div><input type="text" placeholder="Name" name="name" th:field="*{name}" th:default="NONPROP" style="margin: 6px;" ></div>
-                        <div><input type="number" placeholder="MasterId" name="masterid" th:field="*{masterid}" th:default="0" style="margin: 6px;" ></div>
-                        <div><input type="number" placeholder="TypeId" name="typeid" th:field="*{typeid}" th:default="0" style="margin: 6px;" ></div>
+                        <div><input type="text" placeholder="Name" name="name" th:field="*{name}"  style="margin: 6px;" ></div>
+                        <div><input type="number" placeholder="MasterId" name="masterid" th:field="*{masterid}" style="margin: 6px;" ></div>
+                        <div><input type="number" placeholder="TypeId" name="typeid" th:field="*{typeid}"  style="margin: 6px;" ></div>
+                            <div><input type="number" placeholder="Price" name="price" th:field="*{price}" style="margin: 6px;"></div>
                         <div><button class="btn btn-primary" type="submit" style="margin: 6px;">Add</button></div>
+                        </form>
+                        <div style="font-size: 14px"><b>Add props quant</b></div>
+                            <form th:action="@{/addpropnumber}" th:object="${quantityForm}" method="post">
+                            <div><input type="number" placeholder="propid" th:field="*{propid}" style="margin: 6px;"></div>
+                                <div><input type="number" placeholder="MasterId" th:field="*{masterid}" style="margin: 6px;"></div>
+                                <div><input type="number" placeholder="Quantity" th:field="*{numberof}" style="margin: 6px;"></div>
+                            <div><button class="btn btn-primary" type="submit" style="margin: 6px;">Add</button></div>
+                            </form>
+                        <div style="font-size: 14px"><b>Update prop price</b></div>
+                        <form th:action="@{/updateprice}" th:object="${priceform}" method="post">
+                            <div><input type="number" placeholder="propid" th:field="*{propid}" style="margin: 6px;"></div>
+                            <div><input type="number" placeholder="NewPrice" th:field="*{price}" style="margin: 6px;"></div>
+                            <div><button class="btn btn-primary" type="submit" style="margin: 6px;">Update</button></div>
                         </form>
                     </td>
                     <td style="width: 30%;border-width: 1px;border-style: solid;">

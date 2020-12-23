@@ -51,7 +51,12 @@
                     <td><form th:action="@{/addclient}" th:object="${clientform}" method="post">
                         <div><input type="text" placeholder="Name" name="name" th:field = "*{name}" style="margin: 6px;"></div>
                         <div><input type="number" name="discount" placeholder="Discount"  th:field = "*{discount}" style="margin: 6px;"></div>
-                        <div></div><button class="btn btn-primary" type="submit" style="padding: 5px;margin: 6px;">Add</button></form></td>
+                        <div></div><button class="btn btn-primary" type="submit" style="padding: 5px;margin: 6px;">Add</button></form>
+                       <!-- <div style="font-size: 14px"><b>Update prop price</b></div>
+                        <form th:action="@{/changedisc}" th:object="${priceform}" method="post">
+                        <div><input type="number" placeholder="ClientID" name="id" th:field = "*{propid}" style="margin: 6px;"></div>
+                        <div><input type="number" name="discount" placeholder="Discount"  th:field = "*{price}" style="margin: 6px;"></div>
+                        <div></div><button class="btn btn-primary" type="submit" style="padding: 5px;margin: 6px;">Update</button></form></td>-->
                 </tr>
                 <tr></tr>
             </tbody>

@@ -4,13 +4,11 @@ import com.example.application.connections.JDBCLogerAndReports;
 import com.example.application.connections.JDBCMaster;
 import com.example.application.connections.JDBCType;
 import com.example.application.connections.JDBCprops;
-import com.example.application.entity.Client;
 import com.example.application.entity.Master;
 import com.example.application.entity.Prop;
 import com.example.application.entity.Type;
-import com.example.application.form.Masterform;
-import com.example.application.form.Propform;
-import com.example.application.form.Typeform;
+import com.example.application.form.*;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,7 +33,7 @@ public class WorkController {
     JDBCLogerAndReports log;
 
     @GetMapping("/work")
-    public String work (Model model, Masterform masterform, Typeform typeform, Propform propform){
+    public String work (Model model, Masterform masterform, Typeform typeform, Propform propform, QuantityForm quantityform, Priceform priceform){
         List<Master> masterlist = new ArrayList<>();
         List<Type> typelist = new ArrayList<>();
         List<Prop> proplist = new ArrayList<>();
@@ -87,4 +85,32 @@ public class WorkController {
         }
         return "redirect:/work";
     }
+
+    @PostMapping("/addpropnumber")
+    public String addpropnumber(Model model, @ModelAttribute("quantityForm") QuantityForm quantityForm){
+
+    model.addAttribute("quantityForm", quantityForm);
+        try {
+            prop.addpropnumber(quantityForm);
+            prop.addnewhistorycraft(quantityForm);
+            log.newLogertext("To prop id: - "+quantityForm.getPropid()+"  Was added "+quantityForm.getNumberof()+"  units  by master with id: "+ quantityForm.getMasterid() + "  At  " + log.GetDateTime());
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return "redirect:/work";
+    }
+    
+    @PostMapping("/updateprice")
+    public String updateprice(Model model, @ModelAttribute("priceform") Priceform priceform){
+
+        try {
+            prop.updatepropprice(priceform);
+            log.newLogertext("Price of prop id:"+ priceform.getPropid()+ "  changed to - " + priceform.getPrice());
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return "redirect:/work";
+    }
+
+
 }

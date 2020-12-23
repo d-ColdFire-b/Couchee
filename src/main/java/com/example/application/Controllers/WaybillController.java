@@ -6,6 +6,7 @@ import com.example.application.connections.JDBCWaybill;
 import com.example.application.entity.Cart;
 import com.example.application.entity.Waybill;
 import com.example.application.form.Cartform;
+import com.example.application.form.Typeform;
 import com.example.application.form.Waybillform;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,7 +31,7 @@ public class WaybillController {
     JDBCLogerAndReports log;
 
     @GetMapping("/waybills")
-    public String waybills(Model model, Waybillform waybillform, Cartform cartform){
+    public String waybills(Model model, Waybillform waybillform, Cartform cartform, Typeform typeform){
         List<Waybill> waybilllist = new ArrayList<>();
 
         try {
@@ -64,6 +65,7 @@ public class WaybillController {
 
         try {
             cart.addCartmember(cartform);
+            cart.removepropnumber(cartform);
             log.newLogertext("New item have been added in cart of waybill - " + cartform.getWaybillid() + "  Item ID:"+ cartform.getPropid() + "  At  " + log.GetDateTime());
 
         } catch (SQLException throwables) {
@@ -73,7 +75,7 @@ public class WaybillController {
     }
 
     @PostMapping("/getdetails")
-    public String getdetails(Model model, @ModelAttribute("idform") Cartform cartform, Waybillform waybillform) {
+    public String getdetails(Model model, @ModelAttribute("idform") Cartform cartform, Waybillform waybillform, Typeform typeform) {
 
         List<Cart> cartlist = new ArrayList<>();
         List<Waybill> waybilllis = new ArrayList<>();
@@ -102,5 +104,18 @@ public class WaybillController {
 
 
         return "waybills";
+    }
+
+    @PostMapping("/closeorder")
+    public String closeorder(Model model, @ModelAttribute("typeform") Typeform typeform){
+
+        model.addAttribute("typeform", typeform);
+        try {
+            waybill.closeorder(typeform);
+            log.newLogertext("Waybill id: "+ typeform.getId() + "was closed. At "+ log.GetDateTime());
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return "redirect:/waybills";
     }
 }

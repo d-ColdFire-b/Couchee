@@ -9,6 +9,16 @@ public class Prop {
     private Integer typeid;
     private String mastername;
     private String typename;
+    private Integer numberof;
+    private Integer price;
+
+    public Integer getPrice() {
+        return price;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
+    }
 
     public  Prop() {}
     public Prop(String name, Integer masterid, Integer typeid,Integer id) {
@@ -17,6 +27,14 @@ public class Prop {
         this.name = name;
         this.masterid = masterid;
         this.typeid = typeid;
+    }
+
+    public Integer getNumberof() {
+        return numberof;
+    }
+
+    public void setNumberof(Integer numberof) {
+        this.numberof = numberof;
     }
 
     public Integer getId() {

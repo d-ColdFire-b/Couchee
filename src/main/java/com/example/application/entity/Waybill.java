@@ -11,7 +11,11 @@ public class Waybill {
     private Date date;
     private String clientname;
     private Integer sum;
+    private String status;
 
+    public String getStatus() {
+        return status;
+    }
 
     public Waybill (){}
 
@@ -20,6 +24,14 @@ public class Waybill {
         this.date = date;
         this.id = id;
 
+    }
+
+    public String getStatus(String string) {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public Integer getSum() {

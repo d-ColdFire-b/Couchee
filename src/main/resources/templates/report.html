@@ -61,28 +61,28 @@
                 <tr>
                     <td>
                         <ul><li>
-                        <b><span>ID</span><span>  -  </span><span>Name</span></b>
+                        <b><span>ID</span><span>  -  </span><span>Name</span><span>  -  </span><span>Quantity</span></b>
                     </li>
                         <li th:each="row, st :${masterlist}">
-                            <span>id : </span><span th:text="${row.id}">id</span><span>  -  </span><span th:text="${row.name}">name</span>
+                            <span>id : </span><span th:text="${row.id}">id</span><span>  -  </span><span th:text="${row.name}">name</span><span>  -  </span><span th:text="${row.numberof}">qtity</span><span>  units</span>
                         </li>
                     </ul>
                     </td>
                     <td style="border-right-width: 1px;border-right-style: solid;border-left-width: 1px;border-left-style: solid;">
                         <ul><li>
-                        <b><span>Name</span></b>
+                        <b><span>Name</span></b><span>  -  </span><span><b>Quantity</b></span>
                     </li>
                         <li th:each="row, st :${clientlist}">
-                        <span th:text="${row.name}">name</span>
+                        <span th:text="${row.name}">name</span><span>  -  </span><span th:text="${row.numberof}">quant</span><span> units</span>
                         </li>
                     </ul>
                     </td>
                     <td>
                         <ul><li>
-                       <b> <span>Name</span></b>
+                       <b> <span>Name</span></b><span>  -  </span><span><b>Quantity</b></span>
                     </li>
                         <li th:each="row, st :${proplist}">
-                            <span th:text="${row.name}">name</span>
+                            <span th:text="${row.name}">name</span><span>  -  </span><span th:text="${row.numberof}">quant</span><span>  units</span>
                         </li
                         ></td>
                 </tr>
